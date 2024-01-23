@@ -1,33 +1,39 @@
-﻿using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
-using TestsDemoqa.com.PageObject;
+﻿using TestsDemoqa.com.PageObject;
+using Demoqa.DotNet.Tests.Constants;
 
 namespace Demoqa.DotNet.Tests.tests
 {
-    internal class LoginTests
+    internal class LoginTests: BaseTest<LoginPage>
     {
-        private IWebDriver _driver;
-        private LoginPage _page;
 
         [SetUp]
-        public void Setup()
+        public new void Setup()
         {
-            _driver = new ChromeDriver();
-            _page = new LoginPage(_driver);
-            _page.OpenPage("https://demoqa.com/login");
+            page = new LoginPage(driver);
+            page.OpenPage(Url.LoginUrl);
         }
 
-        [TearDown]
-        public void Cleanup()
-        {
-            _driver.Quit();
-        }
+
 
         [Test]
         public void LoginIn_Failed()
         {
-            _page.LoginIn("Verlo", "1234lol");
-            Assert.AreEqual("Invalid username or password!", _page.GetLoginErrorMessage());
+            page.LoginIn(Name.FailedLoginName, Name.FailedPasswordName);
+            Assert.AreEqual(Name.ErrorMessage, page.GetLoginErrorMessage());
+        }
+        [Test]
+        public void LoginInOk()
+        {
+            page.LoginIn(Name.LoginName, Name.PasswordName);
+            Assert.AreEqual(Name.TitleName, page.GetTitle());
+        }
+        [Test]
+        public void LoginOut()
+        {
+            page.LoginInOut(Name.LoginName, Name.PasswordName);
+            Assert.That(page.UserForm.Displayed);
+
+           
         }
     }
 }

@@ -1,27 +1,56 @@
 ﻿using Demoqa.DotNet.Tests.PageObject;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using Demoqa.DotNet.Tests.Constants;
 
 namespace Demoqa.DotNet.Tests.tests
 {
-    internal class ButtonsTests
+    internal class ButtonsTests: BaseTest<ClickPage>
     {
-        private IWebDriver _driver;
-        private BasePage _page;
+        
 
         [SetUp]
-        public void Setup()
+        public new void Setup()
         {
-            _driver = new ChromeDriver();
-            _page = new ClickPage(_driver);
-            _page.OpenPage("https://demoqa.com/buttons");
+           page = new ClickPage(driver);
+        }
+
+
+        [Test]
+        public void ClickTheButton()
+        {
+           page.OpenPage(Url.ButtonUrl);
+           page.DinamicClick();
+           page.AssertIsDisplayed(page.TextDinamicClick);
         }
 
         [Test]
-        public void Test1()
+        public void DoubleClickTheButton()
         {
-            
-            Assert.Pass();
+           page.OpenPage(Url.ButtonUrl);
+           page.DoubleClick();
+           page.AssertIsDisplayed(page.TextDoubleClick);
         }
+        [Test]
+        public void RightClickTheButton()
+        {
+           page.OpenPage(Url.ButtonUrl);
+           page.RightClick();
+           page.AssertIsDisplayed(page.TextRightClick);
+        }
+        [Test]
+        public void YesClickTheButton()
+        {
+           page.OpenPage(Url.RadioButtonUrl);
+           page.YesClick();
+           page.AssertIsDisplayed(page.Answer);
+        }
+        [Test]
+        public void ImpressiveClickTheButton()
+        {
+           page.OpenPage(Url.RadioButtonUrl);
+           page.ImpressiveClick();
+           page.AssertIsDisplayed(page.Answer);
+        }
+
+
     }
 }
