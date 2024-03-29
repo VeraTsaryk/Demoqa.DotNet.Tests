@@ -20,17 +20,18 @@ namespace Demoqa.DotNet.Tests.PageObject
             driver.Navigate().GoToUrl(url);
         }
 
-        public void AssertIsDisplayed(IWebElement element)
-        {
-            Wait(element);
-            Assert.That(element.Displayed);
-        }
-
-        //public void Wait(By locator)
+        //public void AssertIsDisplayed(IWebElement element)
         //{
-        //    WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-        ////    wait.Until(ExpectedConditions.ElementIsVisible(locator));
+        //    Wait(element);
+        //    Assert.That(element.Displayed);
         //}
+
+        //public bool AssertIsDisplayed2(IWebElement element)
+        //{
+        //    Wait(element);
+        //    return element.Displayed;
+        //}
+
         public void WaitAlert()
         {
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
@@ -60,18 +61,21 @@ namespace Demoqa.DotNet.Tests.PageObject
             return driver.Title;
         }
 
-        public bool ElementIsVisible(IWebElement element)
+        public bool IsElementVisible(IWebElement element, bool useWait = false)
         {
             try
             {
+                if(useWait)
+                {
+                    Wait(element);
+                }
+
                 return element.Displayed;
 
             } catch(NoSuchElementException) 
             {
-
                 return false;
             }
-           
         }
     }
 }

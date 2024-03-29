@@ -1,12 +1,6 @@
 ﻿using Demoqa.DotNet.Tests.PageObject;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Demoqa.DotNet.Tests.tests
 {
@@ -16,6 +10,7 @@ namespace Demoqa.DotNet.Tests.tests
         protected TPage page;
 
         protected IWebDriver driver;
+
         [SetUp]
         public void Setup()
         {

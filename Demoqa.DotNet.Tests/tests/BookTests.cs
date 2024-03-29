@@ -9,39 +9,41 @@ namespace Demoqa.DotNet.Tests.tests
         public new void Setup()
         {
             page = new BookPage(driver);
-            page.OpenPage(Url.BookUrl);
+            page.OpenPage(Urls.Book);
         }
 
         [Test]
         public void AddBookIntoProfile()
         {
-            page.BookIntoYourProfile();
-            page.AssertIsDisplayed(page.Book);
+            page.AddBookIntoYourProfile();
+            Assert.That(page.IsElementVisible(page.Book, true));
         }
 
         [Test]
         public void SearchBook()
         {
-            page.SearchBook(Name.BooksName, Name.ChangeBooksName);
-            Assert.That(page.ElementIsVisible(page.Book) == false);
+            page.SearchBook(Variables.BooksName);
+            Assert.AreEqual("Git Pocket Guide", page.GetTextNameBook());
+            page.SearchField.Clear();
+            page.SearchBook(Variables.ChangeBooksName);
+            Assert.That(page.IsElementVisible(page.Book) == false);
         }
 
         [Test]
         public void GoToBookStore()
         {
             page.GoToTheBookStore();
-            page.AssertIsDisplayed(page.Book);
-            Assert.AreEqual(Name.StoreName, page.GetTextBookStore());
+            Assert.That(page.IsElementVisible(page.Book, true));
+            Assert.AreEqual(Variables.StoreName, page.GetTextBookStore());
         }
 
         [Test]
         public void DeleteBookFromProfile()
         {
-            page.BookIntoYourProfile();
-            page.AssertIsDisplayed(page.Book);
+            page.AddBookIntoYourProfile();
+            Assert.That(page.IsElementVisible(page.Book, true));
             page.DeleteBookFromProfile();
-            Assert.That(page.ElementIsVisible(page.Book) == false);
-           
+            Assert.That(page.IsElementVisible(page.Book) == false);
         }
     }
 }

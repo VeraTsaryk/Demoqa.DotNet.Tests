@@ -8,13 +8,12 @@ namespace Demoqa.DotNet.Tests.tests
         public readonly string initialAge = "39";
         public readonly string NewAge = "84";
 
-       [SetUp]
+        [SetUp]
         public new void Setup()
         {
             page = new AgePage(driver);
-            page.OpenPage(Url.AgeUrl);
+            page.OpenPage(Urls.Age);
         }
-
 
         [Test]
         public void EditUserAge()
@@ -22,8 +21,6 @@ namespace Demoqa.DotNet.Tests.tests
             Assert.AreEqual(initialAge, page.GetText(page.EditFieldAge));
             page.EditAge(NewAge);
             Assert.AreEqual(NewAge, page.GetText(page.EditFieldAge));
-
         }
-
     }
 }

@@ -36,20 +36,22 @@ namespace Demoqa.DotNet.Tests.PageObject
         [FindsBy(How = How.ClassName, Using = "text-success")]
         public IWebElement Answer { get; set; }
 
-
         public void DoubleClick()
         {
             Actions action = new Actions(driver);
            action.DoubleClick(DoubleClickBtn).Perform();
         }
+
         public void DinamicClick()
         {
             DinamicClickBtn.Click();
         }
+
         public void YesClick()
         {
             YesClickBtn.Click();
         }
+
         public void ImpressiveClick()
         {
             ImpressiveClickBtn.Click();

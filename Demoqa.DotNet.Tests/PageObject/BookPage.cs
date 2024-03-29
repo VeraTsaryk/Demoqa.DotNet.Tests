@@ -1,15 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
-using SeleniumExtras.WaitHelpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestsDemoqa.com.PageObject;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Demoqa.DotNet.Tests.PageObject
 {
@@ -18,6 +10,7 @@ namespace Demoqa.DotNet.Tests.PageObject
         public BookPage(IWebDriver driver) : base(driver)
         {
         }
+
         [FindsBy(How = How.Id, Using = "see-book-Git Pocket Guide")]
         public IWebElement Book { get; set; }
 
@@ -49,7 +42,7 @@ namespace Demoqa.DotNet.Tests.PageObject
         [FindsBy(How = How.ClassName, Using = "main-header")]
         public IWebElement BookStore { get; set; }
 
-        public void BookIntoYourProfile()
+        public void AddBookIntoYourProfile()
         {
             Book.Click();
             LoginFormName.Click();
@@ -64,6 +57,7 @@ namespace Demoqa.DotNet.Tests.PageObject
             js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
             UserProfile.Click();
         }
+
         public void DeleteBookFromProfile()
         {
             DeleteBtn.Click();
@@ -72,6 +66,7 @@ namespace Demoqa.DotNet.Tests.PageObject
             IAlert simpleAlert = driver.SwitchTo().Alert();
             simpleAlert.Accept();
         }
+
         public string GetTextNameBook()
         {
             return GetText(Book);
@@ -81,15 +76,11 @@ namespace Demoqa.DotNet.Tests.PageObject
             return GetText(BookStore);
         }
 
-        public void SearchBook(string bookName, string changeName)
+        public void SearchBook(string bookName)
         {
             SearchField.SendKeys(bookName);
-            Assert.AreEqual("Git Pocket Guide", GetTextNameBook());
-            SearchField.Clear();
-            SearchField.SendKeys(changeName);
-
-
         }
+
         public void GoToTheBookStore()
         {
             Book.Click();
@@ -98,7 +89,6 @@ namespace Demoqa.DotNet.Tests.PageObject
             WaitUntilClickable(BtnGoToStore);
             Actions action = new Actions(driver);
             action.DoubleClick(BtnGoToStore).Perform();
-
         }
     }
 }

@@ -3,54 +3,52 @@ using Demoqa.DotNet.Tests.Constants;
 
 namespace Demoqa.DotNet.Tests.tests
 {
-    internal class ButtonsTests: BaseTest<ClickPage>
+    internal class ButtonsTests : BaseTest<ClickPage>
     {
-        
-
         [SetUp]
         public new void Setup()
         {
-           page = new ClickPage(driver);
-        }
-
-
-        [Test]
-        public void ClickTheButton()
-        {
-           page.OpenPage(Url.ButtonUrl);
-           page.DinamicClick();
-           page.AssertIsDisplayed(page.TextDinamicClick);
+            page = new ClickPage(driver);
         }
 
         [Test]
-        public void DoubleClickTheButton()
+        public void TheButtonIsClickable()
         {
-           page.OpenPage(Url.ButtonUrl);
-           page.DoubleClick();
-           page.AssertIsDisplayed(page.TextDoubleClick);
-        }
-        [Test]
-        public void RightClickTheButton()
-        {
-           page.OpenPage(Url.ButtonUrl);
-           page.RightClick();
-           page.AssertIsDisplayed(page.TextRightClick);
-        }
-        [Test]
-        public void YesClickTheButton()
-        {
-           page.OpenPage(Url.RadioButtonUrl);
-           page.YesClick();
-           page.AssertIsDisplayed(page.Answer);
-        }
-        [Test]
-        public void ImpressiveClickTheButton()
-        {
-           page.OpenPage(Url.RadioButtonUrl);
-           page.ImpressiveClick();
-           page.AssertIsDisplayed(page.Answer);
+            page.OpenPage(Urls.Button);
+            page.DinamicClick();
+            Assert.That(page.IsElementVisible(page.TextDinamicClick, true));
         }
 
+        [Test]
+        public void TheButtonIsDoubleClickable()
+        {
+            page.OpenPage(Urls.Button);
+            page.DoubleClick();
+            Assert.That(page.IsElementVisible(page.TextDoubleClick, true));
+        }
 
+        [Test]
+        public void TheButtonIsRightClickable()
+        {
+            page.OpenPage(Urls.Button);
+            page.RightClick();
+            Assert.That(page.IsElementVisible(page.TextRightClick, true));
+        }
+
+        [Test]
+        public void TheButtonYesIsClickable()
+        {
+            page.OpenPage(Urls.RadioButton);
+            page.YesClick();
+            Assert.That(page.IsElementVisible(page.Answer, true));
+        }
+
+        [Test]
+        public void TheButtonImpressiveIsClickable()
+        {
+            page.OpenPage(Urls.RadioButton);
+            page.ImpressiveClick();
+            Assert.That(page.IsElementVisible(page.Answer, true));
+        }
     }
 }

@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace Demoqa.DotNet.Tests.PageObject
 {
     public class TextBoxPage : BasePage
-
     {
         public TextBoxPage(IWebDriver driver) : base(driver)
         {
@@ -41,8 +40,6 @@ namespace Demoqa.DotNet.Tests.PageObject
 
         [FindsBy(How = How.CssSelector, Using = "#output #permanentAddress")]
         public IWebElement OutPutPermanentAddress { get; set; }
-
-
 
         public void FillTextBox(string fullName, string email, string currentAddress, string permanentAddress)
         {

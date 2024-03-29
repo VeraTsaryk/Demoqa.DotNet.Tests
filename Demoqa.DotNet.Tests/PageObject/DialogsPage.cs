@@ -26,6 +26,7 @@ namespace Demoqa.DotNet.Tests.PageObject
         {
             SmallModal.Click();
         }
+
         public void DialogLargeModal()
         {
             LargeModal.Click();
@@ -37,5 +38,4 @@ namespace Demoqa.DotNet.Tests.PageObject
 
         }
     }
-
 }

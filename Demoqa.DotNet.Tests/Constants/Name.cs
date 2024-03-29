@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Demoqa.DotNet.Tests.Constants
+﻿namespace Demoqa.DotNet.Tests.Constants
 {
-    internal class Name
+    internal class Variables
     {
         public const string BooksName = "Git Pocket Guide";
         public const string ChangeBooksName = "Lud";

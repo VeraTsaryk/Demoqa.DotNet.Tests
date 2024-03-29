@@ -3,27 +3,21 @@ using Demoqa.DotNet.Tests.Constants;
 
 namespace Demoqa.DotNet.Tests.tests
 {
-    internal class PracticeFormTest: BaseTest<PracticeFormPage>
+    internal class PracticeFormTest : BaseTest<PracticeFormPage>
     {
-
-
         [SetUp]
         public new void Setup()
         {
             page = new PracticeFormPage(driver);
-            page.OpenPage(Url.PracticeFormUrl);
+            page.OpenPage(Urls.PracticeForm);
         }
 
         [Test]
         public void AddUserInformation()
         {
-            page.FillPracticeFormInformation(Name.FullName,Name.LastName,Name.PracticeFormEmail,Name.MobileNumber);
-            page.AssertIsDisplayed(page.SubmitForm);
-           
+            page.FillPracticeFormInformation(Variables.FullName, Variables.LastName, Variables.PracticeFormEmail, Variables.MobileNumber);
+            Assert.That(page.IsElementVisible(page.SubmitForm, true));
+
         }
-
-
-
-
     }
 }

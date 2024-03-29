@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 namespace Demoqa.DotNet.Tests.PageObject
 {
     public class PracticeFormPage : BasePage
-
     {
         public PracticeFormPage(IWebDriver driver) : base(driver)
         {

@@ -3,37 +3,36 @@ using Demoqa.DotNet.Tests.Constants;
 
 namespace Demoqa.DotNet.Tests.tests
 {
-    internal class LoginTests: BaseTest<LoginPage>
+    internal class LoginTests : BaseTest<LoginPage>
     {
-
         [SetUp]
         public new void Setup()
         {
             page = new LoginPage(driver);
-            page.OpenPage(Url.LoginUrl);
+            page.OpenPage(Urls.Login);
         }
-
-
 
         [Test]
         public void LoginIn_Failed()
         {
-            page.LoginIn(Name.FailedLoginName, Name.FailedPasswordName);
-            Assert.AreEqual(Name.ErrorMessage, page.GetLoginErrorMessage());
+            page.LoginIn(Variables.FailedLoginName, Variables.FailedPasswordName);
+            Assert.AreEqual(Variables.ErrorMessage, page.GetLoginErrorMessage());
         }
+
         [Test]
         public void LoginInOk()
         {
-            page.LoginIn(Name.LoginName, Name.PasswordName);
-            Assert.AreEqual(Name.TitleName, page.GetTitle());
+            page.LoginIn(Variables.LoginName, Variables.PasswordName);
+            Assert.AreEqual(Variables.TitleName, page.GetTitle());
         }
+
         [Test]
         public void LoginOut()
         {
-            page.LoginInOut(Name.LoginName, Name.PasswordName);
+            page.LoginInOut(Variables.LoginName, Variables.PasswordName);
             Assert.That(page.UserForm.Displayed);
 
-           
+
         }
     }
 }
